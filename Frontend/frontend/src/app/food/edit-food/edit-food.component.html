@@ -1,0 +1,31 @@
+<h1>Update Food Item</h1>
+<form  [formGroup]="form" novalidate (ngSubmit)="updateFoodItem(form.value)">
+    <div class="form-group">
+        <label>ID*</label>
+        <input type="number" class="form-control" formControlName="id"  readonly required>
+    </div>
+    <div class="form-group">
+        <label>Name*</label>
+        <input type="text" class="form-control" formControlName="foodName"  required>
+    </div>
+    <div class="form-group">
+        <label>Description*</label>
+        <input type="text" class="form-control" formControlName="description"  required>
+    </div>
+    <div class="form-group">
+        <label>Cuisine*</label>
+        <input type="text" class="form-control" formControlName="cuisine"  required>
+    </div>
+    <div class="form-group">
+        <label>Price*</label>
+        <input type="number" class="form-control" formControlName="price"  required>
+    </div>
+    <div class="checkbox">
+        <label>Enabled</label>
+            <input type="checkbox" formControlName="enabled" >  
+    </div>
+    
+    <button type="submit" class="btn btn-default"
+            [disabled]="!form.valid">Update</button>
+</form>
+

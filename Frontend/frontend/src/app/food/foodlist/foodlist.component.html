@@ -1,0 +1,66 @@
+<div>
+    <button class="btn btn-secondary" [routerLink]="'/AdminCuisine'" id="adminCuisine"> Manage Cuisines</button>
+  </div>
+  
+  <h1>Add Food Item</h1>
+  
+  <form  novalidate (ngSubmit)="addFoodItem(form.value)" #form="ngForm">
+      <div class="form-group">
+          <label>Name*</label>
+          <input type="text" class="form-control" name="foodName" ngModel required>
+      </div>
+      <div class="form-group">
+          <label>Description*</label>
+          <input type="text" class="form-control" name="description" ngModel required>
+      </div>
+      <div class="form-group">
+        <label>Cuisine List </label> 
+        <select name="cuisine" class="form-control" ngModel="cuisine">
+          <option *ngFor="let cuisine of cuisines" >{{cuisine.cName}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label>Price*</label>
+          <input type="number" class="form-control" name="price" ngModel required>
+      </div>
+      <div class="checkbox">
+          <label>Enabled</label>
+              <input type="checkbox" name="enabled" ngModel>  
+      </div>
+      
+      <button type="submit" class="btn btn-default"
+              [disabled]="!form.valid">Add</button>
+  </form>
+  
+  <form  novalidate (ngSubmit)="getFood()" #form="ngForm">
+      <button type="submit" class="btn btn-default">Load List</button>
+  </form>
+  
+  <div class="container">
+     
+      <h2>Display List of FoodItems</h2>
+       
+      <table class="table table-striped">
+        <thead>
+            <tr>
+              <th>Id</th>
+              <th>FoodName</th>
+              <th>Cuisine</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>Enabled</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let food of foods" (click)="rowSelected(food);">
+            <td>{{ food.id }}</td>
+            <td>{{ food.foodName }}</td>
+            <td>{{ food.cuisine }}</td>
+            <td>{{ food.description}}</td>
+            <td>{{ food.price }}</td>
+            <td>{{ food.enabled}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
